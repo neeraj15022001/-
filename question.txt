@@ -1,0 +1,53 @@
+Game Rules:
+* Your snake grows in length by 1 unit whenever it eats some food.
+* food randomly appears on the board.
+* Your score increases by 1 after each food item has been eaten.
+* Game is over, when the snake bites itself or touches the edge of the board.
+ 
+Before you start:
+we would recommend you learning these JS concepts mentioned below:
+1. Arrays
+2. Loops (In-Depth)
+3. Objects
+4. Object Prototypal Inheritance
+5. Local Storage (Web Storage API)
+6. Canvas API
+ 
+Task:
+Your task would be to complete the implementation of the Snake game in JavaScript, By completing the stories provided below.
+ 
+Strories to be completed:
+Complete SnakeWorldObject Constructor:
+It stores the coordinates of an object in the current space, You need to complete the existing method stubs for SnakeWorldObject as explained below:
+* getX: It returns the X coordinate of the object.
+* getY: It returns the Y coordinate of the object.
+* setX: It sets the X coordinate of the object to the argument newX value.
+* setY: It sets the Y coordinate of the object to the argument newY value.
+* isSameLocation: It takes another instance of SnakeWorldObject and checks if passed object is at the same location as current object.
+ 
+Complete SnakeFood Constructor:
+It represents the food object for the snake, it extends the SnakeWorldObject. You need to complete the method stub described below:
+* randomizePosition: It takes the coordinates limits of the current board as aruments maxX and maxY, and set the current food location at a new random location.
+ 
+Complete SnakeSection Constructor:
+It represents the snake's body part, it extends the SnakeWorldObject. In the constructor you need set the passed arguments x and y as the coordinates of the snake's body part.
+ 
+Complete Snake Constructor:
+It represents the Snake object on the board, it also extends the SnakeWorldObject. You need to complete the method stubs for the Snake object constructor as described below:
+* setupSnake: It takes the coordinates limits of the current board as aruments maxX and maxY, set the starting coordinates of the Snake on the board and create the initial number of sections for the snake's body. Current sections are stored in the sections variable, and initial number of sections are given as constant in variable NUM_INITIAL_SECTIONS.
+* hasCollided: It takes the coordinates limits of the current board as aruments maxX and maxY, and checks if the snake has collided with itself or the board boundaries. Returns true if snake has collided else returns false.
+* startMove: This method takes no arguments, You need to write the snake movement logic here. (Hint: push new SnakeSections at the end in every move).
+* draw: Draw the Snake and It's body parts using the DrawUtil's utility functions and SnakeSection's draw method.
+* setupListeners: You need to take user's input for the movement of the snake around the board, for that you need to capture the arrow keys input of the user's keystrokes and store UP, DOWN, RIGHT, LEFT constants value in nextDirection member for UP, DOWN, RIGHT, LEFT Arrow keys respectively.
+ 
+Complete SnakeGame Constructor:
+It represents whole Snake Game object, You need to complete the method stubs described below:
+* update: Half of this method has already been implemented, You need to write the snake growth logic inside this method (block has been specified with code comments), after that you need to spawn the Snake's food at a random location, Also this method returns if the snake is alive or dead, i.e. is the game over?
+* recordHighScore: Check the localStorage for the previously stored highest score, if found then set the current high score to stored high score else set it to 0. Also if a new high score is created, store that to the localStorage.
+ 
+ 
+Important Notes:
+1. Do not change any existing code, and/or code structure in any of the provided files. Or test case may fail.
+2. You only need to implement the functionalities which we defined as the stories above.
+3. You can create utility functions as per your needs, but do not change the existing.
+ 
