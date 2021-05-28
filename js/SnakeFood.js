@@ -1,6 +1,6 @@
 function SnakeFood() {
   this.img = document.createElement("img");
-  this.img.src = "images/food1.png";
+  this.img.src = "images/food2.png";
 }
 SnakeFood.prototype = new SnakeWorldObject();
 

@@ -1,4 +1,4 @@
-var SNAKE_SECTION_GREEN = "#00DD00";
+var SNAKE_SECTION_GREEN = "#758520";
 
 function SnakeSection(x, y) {
   // Set snake section coordinates

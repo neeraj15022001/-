@@ -11,7 +11,7 @@ var RIGHT_KEY_CODE = 39;
 
 function Snake() {
   this.img = document.createElement("img");
-  this.img.src = "images/snake2.png";
+  this.img.src = "images/snake3.png";
   this.sections = [];
 }
 
