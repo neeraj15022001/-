@@ -1,3 +1,7 @@
+<!-- Created by Neeraj Gupta -->
+<!-- Date Created : 11 June 2021 : 4:23PM -->
+<!-- Github Username - neeraj15022001 -->
+<!-- Personal Portfolio - https://neerajgupta.codes -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,11 +22,29 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="language" content="English" />
     <meta name="author" content="Neeraj Gupta" />
+    <link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
   </head>
   <body>
-      <h1>PWA Supported Boilerplate by Neeraj Gupta</h1>
-      <a href="https://github.com/neeraj15022001/">Github: Neeraj15022001</a>
+    <h1>Snake JS</h1>
+    <div class="outer-container">
+      <div class="scores">
+        <span class="current">Current Score: <span class="score">0</span></span>
+        <span class="high">High Score: <span class="score">0</span></span>
+      </div>
+      <div class="snake-world-container">
+        <canvas></canvas>
+        <div class="message">Press to start</div>
+      </div>
+    </div>
     <script src="./pwa.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/DrawUtil.js"></script>
+    <script src="js/SnakeWorldObject.js"></script>
+    <script src="js/SnakeFood.js"></script>
+    <script src="js/SnakeSection.js"></script>
+    <script src="js/Snake.js"></script>
+    <script src="js/SnakeGame.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://codequotient.com/snake-game-test-suite-bundle.js"></script>
   </body>
 </html>
