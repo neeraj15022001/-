@@ -1,56 +1,22 @@
-
-var NUM_INITIAL_SECTIONS = 3;
-// Directions
-var UP = 0;
-var UP_KEY_CODE = 38;
-var DOWN = 1;
-var DOWN_KEY_CODE = 40;
-var LEFT = 2;
-var LEFT_KEY_CODE = 37;
-var RIGHT = 3;
-var RIGHT_KEY_CODE = 39;
-
-function Snake() {
+function SnakeFood() {
   this.img = document.createElement('img');
-  this.img.src = 'images/snake2.png';
-  this.sections = [];
+  this.img.src = 'images/food1.png';
 }
+SnakeFood.prototype = new SnakeWorldObject();
 
-Snake.prototype = new SnakeWorldObject();
-
-Snake.prototype.setupSnake = function(maxX, maxY) {
-  // Set snake's starting coordinates
-  // create initial number of snake sections (snake length)
-};
-Snake.prototype.hasCollided = function(maxX, maxY) {
-  // Check if snake has collided with itself or board boundaries.
+SnakeFood.prototype.randomizePosition = function(maxX, maxY) {
+  // Set snake food at random positions.
+  this.setX(Math.floor(Math.random() * maxX))
+  this.setY(Math.floor(Math.random() * maxY))
 };
 
-Snake.prototype.endMove = function(didGrow) {
-  if (!didGrow) {
-    this.sections.shift();
-  }
-};
-
-Snake.prototype.startMove = function() {
-  this.direction = this.nextDirection;
-  // Move snake here
-};
-
-Snake.prototype.draw = function(context, spacing) {
-  // Draw the complete snake
-};
-
-Snake.prototype.init = function(maxX, maxY) {
-  this.setupListeners();
-  this.setupSnake(maxX, maxY);
-};
-
-Snake.prototype.setupListeners = function() {
-  this.direction = UP;
-  this.nextDirection = UP;
-  document.addEventListener('keydown', function(e) {
-    // Set snake's nextDirection based on keypress.
-    e.preventDefault();
-  });
+SnakeFood.prototype.draw = function(context, spacing) {
+  DrawUtil.drawImage(
+    context,
+    this.img,
+    spacing * this.getX(),
+    spacing * this.getY(),
+    spacing,
+    spacing
+  );
 };

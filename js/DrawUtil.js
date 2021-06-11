@@ -1,7 +1,6 @@
 var EXCESS = 8;
 var RADIUS_EXCESS = 2;
 var DrawUtil = {
-
   drawImage: function (context, img, x, y, width, height) {
     context.drawImage(
       img,
@@ -18,6 +17,5 @@ var DrawUtil = {
     context.fillStyle = color;
     context.fill();
     context.closePath();
-  }
-
+  },
 };
