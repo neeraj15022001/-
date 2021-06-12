@@ -24,12 +24,13 @@ Snake.prototype.setupSnake = function(maxX, maxY) {
   for(let i = 0; i < NUM_INITIAL_SECTIONS; i++) {
     this.sections.push(this.img)
   }
-  console.log(this.sections)
   // create initial number of snake sections (snake length)
 };
 Snake.prototype.hasCollided = function(maxX, maxY) {
   // Check if snake has collided with itself or board boundaries.
-  if(this.getX() === maxX || this.getY() === maxY) {
+  // console.log(maxX,maxY)
+  // console.log(this.getX(),this.getY(),maxX,maxY)
+  if(this.getX() === 0 || this.getY() === 0 || this.getX() === maxX || this.getY() === maxY) {
     return true
   } else {
     return false
@@ -43,10 +44,10 @@ Snake.prototype.endMove = function(didGrow) {
 };
 
 Snake.prototype.startMove = function() {
+  // console.log("Calling start move")
   this.direction = this.nextDirection;
+  // console.log(this,this.direction,this.nextDirection)
   // Move snake here
-  // console.log(this.direction)
-  console.log(`Current value of this.nextDirection ${this.nextDirection}`)
   switch(this.direction){ 
     case UP:
       this.setY(this.getY() - 1)
@@ -55,10 +56,10 @@ Snake.prototype.startMove = function() {
       this.setY(this.getY() + 1)
       break
     case LEFT:
-      this.setX(this.getX() + 1)
+      this.setX(this.getX() - 1)
       break
     case RIGHT:
-      this.setX(this.getX() - 1)
+      this.setX(this.getX() + 1)
   }
 };
 
@@ -82,23 +83,25 @@ Snake.prototype.init = function(maxX, maxY) {
 Snake.prototype.setupListeners = function() {
   this.direction = UP;
   this.nextDirection = UP;
+  var objectRef = this
   document.addEventListener('keydown', function(e) {
+    e.preventDefault();
     // Set snake's nextDirection based on keypress.
     const currentKeyCode = e.keyCode
+    let newNextDirection = UP
     switch(currentKeyCode) {
       case 37:
-        this.nextDirection = LEFT
+        newNextDirection = LEFT
         break
       case 38:
-        this.nextDirection = UP
+        newNextDirection = UP
         break
       case 39:
-        this.nextDirection = RIGHT
+        newNextDirection = RIGHT
         break
       case 40:
-        this.nextDirection = DOWN
+        newNextDirection = DOWN
     }
-    console.log(`Current value of this.nextDirection ${this.nextDirection}`)
-    e.preventDefault();
+    objectRef.nextDirection = newNextDirection
   });
 };

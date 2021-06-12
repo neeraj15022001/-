@@ -42,7 +42,8 @@ self.addEventListener('install', function(event) {
         "./",
         "./index.html",
         "./css/style.css",
-        "./js/main.js"
+        "./js/main.js",
+        "./images"
        ]);
     })
    );

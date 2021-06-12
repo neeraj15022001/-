@@ -15,17 +15,21 @@ SnakeWorldObject.prototype.getY = function() {
 };
 SnakeWorldObject.prototype.setX = function(newX) {
   // set current object's x coordinate
+  // console.log(newX)
   this.xPosition = newX
 };
 SnakeWorldObject.prototype.setY = function(newY) {
   // set current object's y coordinate
+  // console.log(newY)
   this.yPosition = newY
 };
 
 // Requires another SnakeWorldObject
 SnakeWorldObject.prototype.isSameLocation = function(snakeWorld) {
   // check if passed object is at the same location as current object.
-  if(this.xPosition === snakeWorld.xPosition || this.yPosition === snakeWorld.yPosition) {
+  // console.log(this)
+  // console.log(snakeWorld)
+  if(this.xPosition === snakeWorld.xPosition && this.yPosition === snakeWorld.yPosition) {
     return true
   } else {
     return false
