@@ -10,61 +10,71 @@ var RIGHT = 3;
 var RIGHT_KEY_CODE = 39;
 
 function Snake() {
-  this.img = document.createElement('img'); //creating img container for snake
-  this.img.src = '../images/snake2.png'; //setting value of img container to snake2
+  this.img = document.createElement("img");
+  this.img.src = "images/snake2.png";
   this.sections = [];
 }
 
 Snake.prototype = new SnakeWorldObject();
 
-Snake.prototype.setupSnake = function(maxX, maxY) {
-  // Set snake's starting coordinates
-  this.setX(maxX/2)
-  this.setY(maxY/2)
-  for(let i = 0; i < NUM_INITIAL_SECTIONS; i++) {
-    this.sections.push(this.img)
+Snake.prototype.setupSnake = function (maxX, maxY) {
+  var startX = Math.floor(maxX / 2);
+  var startY = Math.floor(maxY / 2);
+  this.setX(startX);
+  this.setY(startY);
+  this.sections = [];
+  //intializing snake
+  for (var i = 0; i < NUM_INITIAL_SECTIONS; i++) {
+    var tal = startY + i + 1;
+    this.sections.unshift(new SnakeSection(startX, tal));
   }
-  // create initial number of snake sections (snake length)
 };
-Snake.prototype.hasCollided = function(maxX, maxY) {
-  // Check if snake has collided with itself or board boundaries.
-  // console.log(maxX,maxY)
-  // console.log(this.getX(),this.getY(),maxX,maxY)
-  if(this.getX() === 0 || this.getY() === 0 || this.getX() === maxX || this.getY() === maxY) {
-    return true
-  } else {
-    return false
+Snake.prototype.hasCollided = function (maxX, maxY) {
+  var m = this.getX();
+  var j = this.getY();
+  //out of bound case
+  if (m < 0 || m >= maxX || j < 0 || j >= maxY) {
+    return true;
   }
+
+  // collide with its tail case
+  for (var i = 0; i < this.sections.length; i++) {
+    if (this.isSameLocation(this.sections[i])) {
+      return true;
+    }
+  }
+
+  return false;
 };
 
-Snake.prototype.endMove = function(didGrow) {
+Snake.prototype.endMove = function (didGrow) {
   if (!didGrow) {
-    this.sections.shift(); //pop first entry from sections array
+    this.sections.shift();
   }
 };
 
-Snake.prototype.startMove = function() {
-  // console.log("Calling start move")
+Snake.prototype.startMove = function () {
   this.direction = this.nextDirection;
-  // console.log(this,this.direction,this.nextDirection)
   // Move snake here
-  switch(this.direction){ 
-    case UP:
-      this.setY(this.getY() - 1)
-      break
-    case DOWN: 
-      this.setY(this.getY() + 1)
-      break
-    case LEFT:
-      this.setX(this.getX() - 1)
-      break
-    case RIGHT:
-      this.setX(this.getX() + 1)
+  var x = this.getX();
+  var y = this.getY();
+  if (this.direction === UP) {
+    this.setY(y - 1);
+  } else if (this.direction === DOWN) {
+    this.setY(y + 1);
+  } else if (this.direction === LEFT) {
+    this.setX(x - 1);
+  } else if (this.direction === RIGHT) {
+    this.setX(x + 1);
   }
+  this.sections.push(new SnakeSection(x, y));
 };
 
-Snake.prototype.draw = function(context, spacing) {
+Snake.prototype.draw = function (context, spacing) {
   // Draw the complete snake
+  for (var i = 0; i < this.sections.length; i++) {
+    this.sections[i].draw(context, spacing);
+  }
   DrawUtil.drawImage(
     context,
     this.img,
@@ -75,33 +85,28 @@ Snake.prototype.draw = function(context, spacing) {
   );
 };
 
-Snake.prototype.init = function(maxX, maxY) {
+Snake.prototype.init = function (maxX, maxY) {
   this.setupListeners();
   this.setupSnake(maxX, maxY);
 };
 
-Snake.prototype.setupListeners = function() {
+Snake.prototype.setupListeners = function () {
   this.direction = UP;
   this.nextDirection = UP;
-  var objectRef = this
-  document.addEventListener('keydown', function(e) {
-    e.preventDefault();
+  var snake = this;
+  document.addEventListener("keydown", function (e) {
     // Set snake's nextDirection based on keypress.
-    const currentKeyCode = e.keyCode
-    let newNextDirection = UP
-    switch(currentKeyCode) {
-      case 37:
-        newNextDirection = LEFT
-        break
-      case 38:
-        newNextDirection = UP
-        break
-      case 39:
-        newNextDirection = RIGHT
-        break
-      case 40:
-        newNextDirection = DOWN
+    if (e.keyCode === UP_KEY_CODE && snake.direction !== DOWN) {
+      snake.nextDirection = UP;
+    } else if (e.keyCode === DOWN_KEY_CODE && snake.direction !== UP) {
+      snake.nextDirection = DOWN;
+    } else if (e.keyCode === RIGHT_KEY_CODE && snake.direction !== LEFT) {
+      snake.nextDirection = RIGHT;
+    } else if (e.keyCode === LEFT_KEY_CODE && snake.direction !== RIGHT) {
+      snake.nextDirection = LEFT;
+    } else {
+      return;
     }
-    objectRef.nextDirection = newNextDirection
+    e.preventDefault();
   });
 };

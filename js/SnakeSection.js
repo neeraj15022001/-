@@ -2,13 +2,13 @@ var SNAKE_SECTION_GREEN = "#00DD00";
 
 function SnakeSection(x, y) {
   // Set snake section coordinates
-  this.setX(x)
-  this.setY(y)
+  this.setX(x);
+  this.setY(y);
 }
 
 SnakeSection.prototype = new SnakeWorldObject();
 
-SnakeSection.prototype.draw = function(context, spacing) {
+SnakeSection.prototype.draw = function (context, spacing) {
   DrawUtil.drawCircle(
     context,
     spacing * this.getX() + spacing / 2,

@@ -1,37 +1,30 @@
 /* Base class for objects in Snake World */
 
-function SnakeWorldObject() {
-  this.xPosition;
-  this.yPosition;
-}
+function SnakeWorldObject() {}
 
-SnakeWorldObject.prototype.getX = function() {
+SnakeWorldObject.prototype.getX = function () {
   // return x coordinate
-  return this.xPosition
+  return this.x;
 };
-SnakeWorldObject.prototype.getY = function() {
+SnakeWorldObject.prototype.getY = function () {
   // return y coordinate
-  return this.yPosition
+  return this.y;
 };
-SnakeWorldObject.prototype.setX = function(newX) {
+SnakeWorldObject.prototype.setX = function (newX) {
   // set current object's x coordinate
-  // console.log(newX)
-  this.xPosition = newX
+  this.x = newX;
 };
-SnakeWorldObject.prototype.setY = function(newY) {
+SnakeWorldObject.prototype.setY = function (newY) {
   // set current object's y coordinate
-  // console.log(newY)
-  this.yPosition = newY
+  this.y = newY;
 };
+
 
 // Requires another SnakeWorldObject
-SnakeWorldObject.prototype.isSameLocation = function(snakeWorld) {
+SnakeWorldObject.prototype.isSameLocation = function (snakeWorld) {
   // check if passed object is at the same location as current object.
-  // console.log(this)
-  // console.log(snakeWorld)
-  if(this.xPosition === snakeWorld.xPosition && this.yPosition === snakeWorld.yPosition) {
-    return true
-  } else {
-    return false
+  if (snakeWorld.getX() === this.getX() && snakeWorld.getY() === this.getY()) {
+    return true;
   }
+  return false;
 };
